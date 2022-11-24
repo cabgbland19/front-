@@ -2,7 +2,15 @@
     <div class="col-md-4">
       <div class="card">
         <div class="card-body">
-          <h1>Formulario</h1>
+         <form #payloadForm="ngForm" (ngSubmit)="postTable(payloadForm)">
+          <div class="form-group">
+            <input class="form-control" name="numero" [(ngModel)]="tablesService.selectedTable.numero">
+          </div>
+          <div class="form-group">
+            <input class="form-control" name="cantidad_inscritos" [(ngModel)]="tablesService.selectedTable.cantidad_inscritos">
+          </div>
+          <button>Save</button>
+         </form>
         </div>
       </div>
     </div>
