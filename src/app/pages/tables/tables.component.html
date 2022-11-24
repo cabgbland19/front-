@@ -1,1 +1,26 @@
-<p>tables works!</p>
+<div class="row">
+    <div class="col-md-4">
+      <div class="card">
+        <div class="card-body">
+          <h1>Formulario</h1>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-8">
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th>Número</th>
+            <th>Cantidad inscritos</th>
+          </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let tableModel of tablesService.tables">
+                <td>{{tableModel.numero}}</td>
+                <td>{{tableModel.cantidad_inscritos}}</td>
+            </tr>
+        </tbody>
+      </table>
+    </div>
+</div>
+  
