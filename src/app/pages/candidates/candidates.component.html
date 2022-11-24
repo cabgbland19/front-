@@ -1,1 +1,30 @@
-<p>candidates works!</p>
+<div class="row">
+    <div class="col-md-4">
+      <div class="card">
+        <div class="card-body">
+          <h1>Formulario</h1>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-8">
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th>Cedula</th>
+            <th>N° Resolucion</th>
+            <th>Nombre</th>
+            <th>Apellido</th>
+          </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let candidateModel of candidatesService.candidates">
+                <td>{{candidateModel.cedula}}</td>
+                <td>{{candidateModel.numero_resolucion}}</td>
+                <td>{{candidateModel.nombre}}</td>
+                <td>{{candidateModel.apellido}}</td>
+            </tr>
+        </tbody>
+      </table>
+    </div>
+</div>
+  
