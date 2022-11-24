@@ -5,25 +5,28 @@
   </div>
   <!-- Formulario -->
   <div class="col-6 d-flex justify-content-center align-items-center">
-    <form style="width: 400px !important" class="p-5 bg-white rounded-3">
+    <form style="width: 400px !important" class="p-5 bg-white rounded-3" #formRegister="ngForm" (ngSubmit)="sendForm(formRegister)">
+      <!-- Email -->
       <div class="mb-5">
         <label for="exampleInputEmail1" class="form-label">Correo</label>
         <input
           type="email"
           class="form-control"
-          id="exampleInputEmail1"
+          name="correo"
           placeholder="Ingresa tu correo"
           aria-describedby="emailHelp"
+          [(ngModel)]="loginService.login.correo"
         />
       </div>
-      <i class="bi bi-0-square"></i>
+      <!-- Contraseña -->
       <div class="mb-5">
         <label for="exampleInputPassword1" class="form-label">Contraseña</label>
         <input
           type="password"
+          name="contrasena"
           class="form-control"
           placeholder="Ingresa tu contraseña"
-          id="exampleInputPassword1"
+          [(ngModel)]="loginService.login.contrasena"
         />
       </div>
       <div class="d-grid gap-2">

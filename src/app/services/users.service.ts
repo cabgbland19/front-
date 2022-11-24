@@ -2,15 +2,14 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class UsersService {
+  URL_API = 'http://127.0.0.1:7777/Usuarios';
 
-  URL_API = ''
-
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) {}
 
   getUsers() {
-    return this.http.get(this.URL_API)
+    return this.http.get(this.URL_API);
   }
 }

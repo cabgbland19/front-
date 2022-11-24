@@ -1,9 +1,10 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { FormsModule } from '@angular/forms';
 
 import { AppComponent } from './app.component';
-import { RouterModule, Routes } from "@angular/router";
+import { RouterModule, Routes } from '@angular/router';
 import { TestComponent } from './test/test.component';
 import { LoginComponent } from './pages/login/login.component';
 import { UsersComponent } from './pages/users/users.component';
@@ -13,16 +14,20 @@ import { CandidatesComponent } from './pages/candidates/candidates.component';
 import { ResultsComponent } from './pages/results/results.component';
 import { ReportsComponent } from './pages/reports/reports.component';
 
+import { AuthGuard } from './auth.guard';
+import { InterceptorService } from './services/interceptor.service';
+
 const routes: Routes = [
-  {path: 'test', component: TestComponent},
-  {path: 'login', component: LoginComponent},
-  {path: 'admin/users', component: UsersComponent},
-  {path: 'admin/tables', component: TablesComponent},
-  {path: 'admin/parties', component: PartiesComponent},
-  {path: 'admin/candidates', component: CandidatesComponent},
-  {path: 'admin/results', component: ResultsComponent},
-  {path: 'admin/reports', component: ReportsComponent},
-]
+  { path: '', redirectTo: '/login', pathMatch: 'full' },
+  { path: 'test', component: TestComponent },
+  { path: 'login', component: LoginComponent },
+  { path: 'admin/users', component: UsersComponent, canActivate: [AuthGuard] },
+  { path: 'admin/tables', component: TablesComponent },
+  { path: 'admin/parties', component: PartiesComponent },
+  { path: 'admin/candidates', component: CandidatesComponent },
+  { path: 'admin/results', component: ResultsComponent },
+  { path: 'admin/reports', component: ReportsComponent },
+];
 
 @NgModule({
   declarations: [
@@ -34,14 +39,22 @@ const routes: Routes = [
     PartiesComponent,
     CandidatesComponent,
     ResultsComponent,
-    ReportsComponent
+    ReportsComponent,
   ],
   imports: [
     BrowserModule,
     HttpClientModule,
-    RouterModule.forRoot(routes)
+    RouterModule.forRoot(routes),
+    FormsModule,
   ],
-  providers: [],
-  bootstrap: [AppComponent]
+  providers: [
+    AuthGuard,
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: InterceptorService,
+      multi: true,
+    },
+  ],
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}
