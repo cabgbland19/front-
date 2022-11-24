@@ -8,7 +8,7 @@ import { Table } from '../../models/tables/tables';
 export class TablesService {
   URL_API = 'http://127.0.0.1:7777/Mesas';
 
-  tables: any[] = [];
+  tables: Table[] = [];
 
   constructor(private http: HttpClient) {}
 

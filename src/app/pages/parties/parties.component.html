@@ -1,1 +1,26 @@
-<p>parties works!</p>
+<div class="row">
+    <div class="col-md-4">
+      <div class="card">
+        <div class="card-body">
+          <h1>Formulario</h1>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-8">
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th>Nombre</th>
+            <th>Lema</th>
+          </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let partyModel of partiesService.parties">
+                <td>{{partyModel.nombre}}</td>
+                <td>{{partyModel.lema}}</td>
+            </tr>
+        </tbody>
+      </table>
+    </div>
+</div>
+  
