@@ -24,4 +24,12 @@ export class TablesService {
   postTable(table: Table) {
     return this.http.post(this.URL_API, table);
   }
+
+  deleteTable(_id: string) {
+    return this.http.delete(`${this.URL_API}/${_id}`);
+  }
+
+  putTable(table: Table) {
+    return this.http.put(`${this.URL_API}/${table._id}`, table);
+  }
 }

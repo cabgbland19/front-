@@ -2,7 +2,16 @@
     <div class="col-md-4">
       <div class="card">
         <div class="card-body">
-          <h1>Formulario</h1>
+          <form #payloadForms="ngForm" (ngSubmit)="postParty(payloadForms)">
+            <input type="hidden" name="_id" [(ngModel)]="partiesService.selectedParty._id">
+            <div class="form-group">
+              <input class="form-control" name="numero" [(ngModel)]="partiesService.selectedParty.nombre">
+            </div>
+            <div class="form-group">
+              <input class="form-control" name="cantidad_inscritos" [(ngModel)]="partiesService.selectedParty.lema">
+            </div>
+            <button>Save</button>
+           </form>
         </div>
       </div>
     </div>
@@ -18,6 +27,10 @@
             <tr *ngFor="let partyModel of partiesService.parties">
                 <td>{{partyModel.nombre}}</td>
                 <td>{{partyModel.lema}}</td>
+                <td>
+                  <button class="btn btn-danger me-2" (click)="editParty(partyModel)">Editar</button>
+                  <button class="btn btn-secondary" (click)="deleteParty(partyModel._id)">Remover</button>
+              </td>
             </tr>
         </tbody>
       </table>

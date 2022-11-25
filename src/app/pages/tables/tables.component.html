@@ -3,6 +3,7 @@
       <div class="card">
         <div class="card-body">
          <form #payloadForm="ngForm" (ngSubmit)="postTable(payloadForm)">
+          <input type="hidden" name="_id" [(ngModel)]="tablesService.selectedTable._id">
           <div class="form-group">
             <input class="form-control" name="numero" [(ngModel)]="tablesService.selectedTable.numero">
           </div>
@@ -26,6 +27,10 @@
             <tr *ngFor="let tableModel of tablesService.tables">
                 <td>{{tableModel.numero}}</td>
                 <td>{{tableModel.cantidad_inscritos}}</td>
+                <td>
+                    <button class="btn btn-danger me-2" (click)="editTable(tableModel)">Editar</button>
+                    <button class="btn btn-secondary" (click)="deleteTable(tableModel._id)">Remover</button>
+                </td>
             </tr>
         </tbody>
       </table>
